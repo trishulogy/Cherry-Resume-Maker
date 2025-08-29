@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Professional Resume Builder</title>
+  <!-- Geist font and Font Awesome icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="/frontend/styles.css">
+  <script src="/frontend/script.js" defer></script>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <header class="site-header">
+    <div class="header-content">
+      <h1><i class="fas fa-file-alt"></i> ResumeBuilder</h1>
+      <p>Create professional resumes in minutes</p>
+    </div>
+  </header>
+  
+  <main class="container">
+    <form id="resumeForm">
+      <section class="form-section fade-in">
+        <h2 class="section-title"><i class="fas fa-user"></i> Personal Information</h2>
+        <div class="form-grid">
+          <div class="input-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="e.g., John Smith" required />
+          </div>
+          <div class="input-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="e.g., john.smith@example.com" required />
+          </div>
+          <div class="input-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g., +1 (123) 456-7890" />
+          </div>
+          <div class="input-group">
+            <label for="linkedin">LinkedIn Profile</label>
+            <input type="url" id="linkedin" name="linkedin" placeholder="e.g., linkedin.com/in/johnsmith" />
+          </div>
+          <div class="input-group">
+            <label for="github">GitHub Profile</label>
+            <input type="url" id="github" name="github" placeholder="e.g., github.com/johnsmith" />
+          </div>
+          <div class="input-group full-width">
+            <label for="summary">Professional Summary</label>
+            <textarea id="summary" name="summary" rows="4" placeholder="A brief, impactful summary of your experience..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section fade-in" id="education-section">
+        <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+        <div id="education-container">
+          <div class="education-entry">
+            <div class="form-grid">
+              <div class="input-group">
+                <label>University / School Name</label>
+                <input type="text" name="university" placeholder="e.g., University of Technology" />
+              </div>
+              <div class="input-group">
+                <label>Degree / Level</label>
+                <input type="text" name="degree" placeholder="e.g., B.S. in Computer Science" />
+              </div>
+              <div class="input-group">
+                <label>Start Date</label>
+                <input type="month" name="universityStartDate" />
+              </div>
+              <div class="input-group">
+                <label>End Date</label>
+                <input type="month" name="universityEndDate" />
+              </div>
+              <div class="input-group full-width">
+                <label>GPA / Marks</label>
+                <input type="text" name="universityMarks" placeholder="e.g., 3.8/4.0 GPA" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="add-button" data-section="education"><i class="fas fa-plus"></i> Add Education</button>
+      </section>
+
+      <section class="form-section fade-in" id="experience-section">
+        <h2 class="section-title"><i class="fas fa-briefcase"></i> Work Experience</h2>
+        <div id="experience-container">
+          <div class="experience-entry">
+            <div class="form-grid">
+              <div class="input-group">
+                <label>Job Title</label>
+                <input type="text" name="jobTitle" placeholder="e.g., Software Engineer" />
+              </div>
+              <div class="input-group">
+                <label>Company</label>
+                <input type="text" name="company" placeholder="e.g., Tech Innovations Inc." />
+              </div>
+              <div class="input-group">
+                <label>Start Date</label>
+                <input type="month" name="expStartDate" />
+              </div>
+              <div class="input-group">
+                <label>End Date</label>
+                <input type="month" name="expEndDate" />
+              </div>
+              <div class="input-group full-width">
+                <label>Description</label>
+                <textarea name="jobDescription" rows="4" placeholder="Describe your key responsibilities and achievements..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="add-button" data-section="experience"><i class="fas fa-plus"></i> Add Work Experience</button>
+      </section>
+
+      <section class="form-section fade-in" id="skills-section">
+        <h2 class="section-title"><i class="fas fa-cogs"></i> Skills</h2>
+        <div id="skills-container">
+          <div class="skill-entry">
+            <div class="form-grid">
+              <div class="input-group">
+                <label>Category</label>
+                <input type="text" name="skillCategory" placeholder="e.g., Languages, Tools, Frameworks" />
+              </div>
+              <div class="input-group full-width">
+                <label>Items (comma-separated)</label>
+                <input type="text" name="skillItems" placeholder="e.g., JavaScript, Python, C++, React, Git" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="add-button" data-section="skills"><i class="fas fa-plus"></i> Add More Skills</button>
+      </section>
+
+      <section class="form-section fade-in" id="projects-section">
+        <h2 class="section-title"><i class="fas fa-project-diagram"></i> Projects</h2>
+        <div id="projects-container">
+          <div class="project-entry">
+            <div class="form-grid">
+              <div class="input-group">
+                <label>Project Title</label>
+                <input type="text" name="projectTitle" placeholder="e.g., Unique Resume Builder" />
+              </div>
+              <div class="input-group">
+                <label>Project Link</label>
+                <input type="url" name="projectLink" placeholder="e.g., https://github.com/myproject" />
+              </div>
+              <div class="input-group full-width">
+                <label>Description</label>
+                <textarea name="projectDescription" rows="4" placeholder="Describe the project and your role in it..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="add-button" data-section="projects"><i class="fas fa-plus"></i> Add More Projects</button>
+      </section>
+
+      <section class="form-section fade-in" id="certifications-section">
+    <h2 class="section-title"><i class="fas fa-certificate"></i> Certifications</h2>
+    <div id="certifications-container">
+        <div class="certification-entry">
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Certification Name</label>
+                    <input type="text" name="certName" placeholder="e.g., AWS Certified Developer" />
+                </div>
+                <div class="input-group">
+                    <label>Certificate Link</label>
+                    <input type="url" name="certLink" placeholder="e.g., https://www.credly.com/users/username/badges" />
+                </div>
+                <div class="input-group full-width">
+                    <label>End Date / Status</label>
+                    <input type="text" name="certEndDate" placeholder="e.g., Completed or In Progress" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="add-button" data-section="certifications">
+        <i class="fas fa-plus"></i> Add More Certifications
+    </button>
+</section>
+      
+      <div class="submit-section fade-in">
+        <button type="submit" class="submit-button"><i class="fas fa-file-download"></i> Generate Resume</button>
+        <div id="status-message"></div>
+      </div>
+    </form>
+  </main>
+  
+  <footer class="site-footer">
+    <p>
+    <a href="https://github.com/trishulogy" style="color: white;">
+        Made by Tejashween Kumar
+    </a>
+    </p>
+  </footer>
+</body>
+</html>
