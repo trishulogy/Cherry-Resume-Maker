@@ -1,5 +1,5 @@
 # Professional Resume Builder
-This is a modern, responsive web application for building professional resumes. Users can fill out a form with their personal information, education, work experience, and more. The application then generates a formatted PDF resume ready for download.
+This web application enables users to create a professional resume using a modern, intuitive single interface. Students and professionals may instantly enter their personal details, education, and work experience, among other things. Users are also able to immediately download a well-formatted PDF resume using the single-click download option.
 
 # Features
 Responsive Design: The application works seamlessly on both desktop and mobile devices.
@@ -46,4 +46,5 @@ Individuals interested in contributing to this project are encouraged to fork th
 
 # License
 This project is made available under the MIT License.
+
 
